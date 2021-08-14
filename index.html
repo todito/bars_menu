@@ -1,18 +1,69 @@
 <!DOCTYPE html>
 <html lang="it">
   <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Menu Bars</title>
-    <link rel="stylesheet" href="style.css" />
-<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-  </head>
+   <title>Menu Bars</title>
+    <style>
+      * {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.barre_contenitore {
+  width: 100px;
+  height: 100px;
+  /* border: solid 1px red; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.barra {
+  position: absolute;
+  width: 80px;
+  height: 10px;
+  background-color: black;
+  border-radius: 6px;
+  transition: all .5s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+.barra::before,
+.barra::after {
+  display: block;
+  content: "";
+  width: 80px;
+  height: 10px;
+  background-color: black;
+  border-radius: 6px;
+  transition: all .5s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+.barra::before {
+  transform: translateY(-25px);
+}
+.barra::after {
+  transform: translateY(15px);
+}
+.barra.aperto {
+  background: transparent;
+}
+.barra.aperto::before {
+  transform: rotate(-45deg) translateY(5px);
+}
+.barra.aperto::after {
+   
+  transform: rotate(45deg) translateY(-5px);
+}
+
+    </style>
+ </head>
   <body>
-    <p>creiamo un semplice menu da inserire in qualsiasi sito</p>
     <div class="barre_contenitore">
       <div class="barra"></div>
     </div>
   </body>
-  <script src="script.js"></script>
+  <script>
+    const barre_contenitore = document.querySelector('.barre_contenitore');
+const barre = document.querySelector('.barra')
+barre_contenitore.addEventListener('click', function(){
+   barre.classList.toggle('aperto');
+}) 
+  </script>
 </html>
